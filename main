@@ -1,18 +1,27 @@
+#Emile Macabies
+#Janvier 2023
+
+#importation
 from random import *
 
+#definitions de variables
 de1 = randint(1, 6)
 de2 = randint(1, 6)
 de3 = randint(1, 6)
 de4 = randint(1, 6)
 
-
+#creation de la classe NPC 
 class NPC:
 
+    #initialisation ou les parametres du npc sont definis
     def __init__(self, nom, race, espece, profession):
+    
+        #parametres definis aleatoirement
         self.force = [de1, de2, de3, de4]
         self.force.sort()
         self.force.pop(0)
         self.force = sum(self.force)
+        
 
         self.agilite = [de1, de2, de3, de4]
         self.agilite.sort()
@@ -38,19 +47,17 @@ class NPC:
         self.charisme.sort()
         self.charisme.pop(0)
         self.charisme = sum(self.charisme)
-
+                 
         self.classe_armure = randint(1, 12)
-
-        self.nom = nom
-
-        self.race = race
-
-        self.espece = espece
-
         self.point_de_vie = randint(1, 20)
 
+        #parametre definis par le joueur
+        self.nom = nom
+        self.race = race
+        self.espece = espece
         self.profession = profession
-
+        
+    #methode qui affiche les infos du npc
     def afficher_caracteristiques(self):
         print("Le nom est:", self.nom, "la race est:", self.race, "l'espece est:", self.espece, "la profession est",
               self.profession)
@@ -58,26 +65,33 @@ class NPC:
               "la constitution est:", self.constitution, "l'intelligence est:", self.intelligence)
         print("La classe d'armure est:", self.classe_armure, "Les points de vie sont:", self.point_de_vie)
 
-
+#creation de la classe kobold qui herite de la classe NPC
 class kobold(NPC):
 
+    #initialisation ou la classe herite des parametres de NPC
     def __init__(self, par1, par2, par3, par4):
         super().__init__(par1, par2, par3, par4)
 
+    #methode pour attaquer qui prends une cible en parametre
     def attaquer(self, cible):
         self.npc = cible
         return
 
+    #methode pour subir des dommages ou la quantite de dommage est prise en parametre
     def subir_dommage(self, quantite_dommage):
         return
 
-
+#creation de la classe Heros qui herite de la classe NPC
 class Heros(NPC):
+    
+    #initialisation ou la classe herite des parametres de NPC
     def __init__(self, par1, par2, par3, par4):
         super().__init__(par1, par2, par3, par4)
 
+    #methode pour attaquer qui prends une cible en parametre
     def attaquer(self, cible):
 
+        #un de est lance pour definir quel type d'attaque le Heros fera
         lancer_de_hero = randint(1, 20)
 
         if lancer_de_hero == 1:
@@ -100,5 +114,6 @@ class Heros(NPC):
                 print("L'attaque n'est pas assez forte!")
         return
 
+    #methode pour subir des dommages ou la quantite de dommage est prise en parametre
     def subir_dommage(self, quantite_dommage):
         return

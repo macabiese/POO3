@@ -1,0 +1,104 @@
+from random import *
+
+de1 = randint(1, 6)
+de2 = randint(1, 6)
+de3 = randint(1, 6)
+de4 = randint(1, 6)
+
+
+class NPC:
+
+    def __init__(self, nom, race, espece, profession):
+        self.force = [de1, de2, de3, de4]
+        self.force.sort()
+        self.force.pop(0)
+        self.force = sum(self.force)
+
+        self.agilite = [de1, de2, de3, de4]
+        self.agilite.sort()
+        self.agilite.pop(0)
+        self.agilite = sum(self.agilite)
+
+        self.constitution = [de1, de2, de3, de4]
+        self.constitution.sort()
+        self.constitution.pop(0)
+        self.constitution = sum(self.constitution)
+
+        self.intelligence = [de1, de2, de3, de4]
+        self.intelligence.sort()
+        self.intelligence.pop(0)
+        self.intelligence = sum(self.intelligence)
+
+        self.sagesse = [de1, de2, de3, de4]
+        self.sagesse.sort()
+        self.sagesse.pop(0)
+        self.sagesse = sum(self.sagesse)
+
+        self.charisme = [de1, de2, de3, de4]
+        self.charisme.sort()
+        self.charisme.pop(0)
+        self.charisme = sum(self.charisme)
+
+        self.classe_armure = randint(1, 12)
+
+        self.nom = nom
+
+        self.race = race
+
+        self.espece = espece
+
+        self.point_de_vie = randint(1, 20)
+
+        self.profession = profession
+
+    def afficher_caracteristiques(self):
+        print("Le nom est:", self.nom, "la race est:", self.race, "l'espece est:", self.espece, "la profession est",
+              self.profession)
+        print("La force est:", self.force, "l'agilite est:", self.agilite, "le charisme est:", self.charisme,
+              "la constitution est:", self.constitution, "l'intelligence est:", self.intelligence)
+        print("La classe d'armure est:", self.classe_armure, "Les points de vie sont:", self.point_de_vie)
+
+
+class kobold(NPC):
+
+    def __init__(self, par1, par2, par3, par4):
+        super().__init__(par1, par2, par3, par4)
+
+    def attaquer(self, cible):
+        self.npc = cible
+        return
+
+    def subir_dommage(self, quantite_dommage):
+        return
+
+
+class Heros(NPC):
+    def __init__(self, par1, par2, par3, par4):
+        super().__init__(par1, par2, par3, par4)
+
+    def attaquer(self, cible):
+
+        lancer_de_hero = randint(1, 20)
+
+        if lancer_de_hero == 1:
+            print("Attaque ratee!")
+
+        if lancer_de_hero == 20:
+            nb_dommage = randint(1, 8)
+            cible.subir_dommage = nb_dommage
+            print("Coup critique, le monstre subi", nb_dommage, "de dommage!")
+
+        if 2 < lancer_de_hero < 20:
+            print("La classe d'armure du monstre est", self.classe_armure)
+
+            if lancer_de_hero >= self.classe_armure:
+                nb_dommage = randint(1, 6)
+                cible.subir_dommage = nb_dommage
+                print("L'attaque penetre l'armure et inflige", nb_dommage, "degat(s)")
+
+            if lancer_de_hero < self.classe_armure:
+                print("L'attaque n'est pas assez forte!")
+        return
+
+    def subir_dommage(self, quantite_dommage):
+        return

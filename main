@@ -22,7 +22,6 @@ class NPC:
         self.force.pop(0)
         self.force = sum(self.force)
         
-
         self.agilite = [de1, de2, de3, de4]
         self.agilite.sort()
         self.agilite.pop(0)

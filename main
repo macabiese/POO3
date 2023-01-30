@@ -4,11 +4,17 @@
 #importation
 from random import *
 
-#definitions de variables
-de1 = randint(1, 6)
-de2 = randint(1, 6)
-de3 = randint(1, 6)
-de4 = randint(1, 6)
+#fonction pour assigner des statistiques aleatoirement
+def stats_random():
+    de1 = randint(1, 6)
+    de2 = randint(1, 6)
+    de3 = randint(1, 6)
+    de4 = randint(1, 6)
+    liste_des = [de1, de2, de3, de4]
+    liste_des.sort()
+    liste_des.pop(0)
+    calcul_liste_des = sum(liste_des)
+    return calcul_liste_des
 
 #creation de la classe NPC 
 class NPC:
@@ -16,36 +22,16 @@ class NPC:
     #initialisation ou les parametres du npc sont definis
     def __init__(self, nom, race, espece, profession):
     
-        #parametres definis aleatoirement
-        self.force = [de1, de2, de3, de4]
-        self.force.sort()
-        self.force.pop(0)
-        self.force = sum(self.force)
+        #parametres definis aleatoirement par la fonction stats_random()
+        self.force = stats_random()
         
-        self.agilite = [de1, de2, de3, de4]
-        self.agilite.sort()
-        self.agilite.pop(0)
-        self.agilite = sum(self.agilite)
+        self.agilite = stats_random()
 
-        self.constitution = [de1, de2, de3, de4]
-        self.constitution.sort()
-        self.constitution.pop(0)
-        self.constitution = sum(self.constitution)
+        self.constitution = stats_random()
 
-        self.intelligence = [de1, de2, de3, de4]
-        self.intelligence.sort()
-        self.intelligence.pop(0)
-        self.intelligence = sum(self.intelligence)
+        self.intelligence = stats_random()
 
-        self.sagesse = [de1, de2, de3, de4]
-        self.sagesse.sort()
-        self.sagesse.pop(0)
-        self.sagesse = sum(self.sagesse)
-
-        self.charisme = [de1, de2, de3, de4]
-        self.charisme.sort()
-        self.charisme.pop(0)
-        self.charisme = sum(self.charisme)
+        self.sagesse = stats_random()
                  
         self.classe_armure = randint(1, 12)
         self.point_de_vie = randint(1, 20)
